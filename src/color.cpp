@@ -8,7 +8,6 @@
 #include <atomic>
 
 extern std::atomic<bool> leituraAtiva;
-extern std::atomic<bool> running;
 
 std::string detectColorHSV(int hue, int saturation, int value) {
     if (value < 30) return "PRETO";
@@ -45,7 +44,7 @@ void colorThread(cv::VideoCapture& cap) {
     bool lastState = !leituraAtiva;
     bool boot = true;
 
-    while (running) {
+    while (true) {
         if (boot) {
             lcdClear();
             lcdSetCursor(0, 0);
